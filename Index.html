@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message</title>
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, sans-serif;
+            overflow: hidden; 
+        }
+
+        .page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .page.fade-out {
+            opacity: 0;
+        }
+        
+        #page-1 {
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #welcome-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+        }
+
+        .welcome-text {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #click-here-button {
+            margin-top: 3rem;
+            font-size: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            cursor: pointer;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        #page-2 {
+            /* --- THE ONLY CHANGE IS HERE --- */
+            /* Changed .jpg to .png to match your file */
+            background-image: url('background2.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #final-message-container {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.4); 
+            padding: 2rem 4rem;
+            border-radius: 15px;
+        }
+
+        #final-message {
+            font-size: 5rem;
+            font-weight: bold;
+            color: white; 
+            text-shadow: 2px 2px 8px black;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 5s infinite ease-in-out;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px black;
+        }
+        
+        .heart.h1 { top: -40%; left: 50%; animation-delay: 0s; }
+        .heart.h2 { top: 20%; left: -50%; font-size: 3rem; animation-delay: -1.2s; }
+        .heart.h3 { top: 90%; left: -20%; animation-delay: -2.5s; }
+        .heart.h4 { top: 120%; left: 80%; font-size: 2.5rem; animation-delay: -0.5s; }
+        .heart.h5 { top: 40%; left: 130%; animation-delay: -3s; }
+        .heart.h6 { top: -20%; left: 110%; font-size: 2rem; animation-delay: -4s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(15deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="page-1" class="page">
+        <div id="welcome-container">
+            <div class="welcome-text">Welcome, Rachael :)</div>
+            <div id="click-here-button">Click here</div>
+        </div>
+    </div>
+
+    <div id="page-2" class="page" style="display: none;">
+        <div id="final-message-container">
+            <div id="final-message">I love you</div>
+            <div class="heart h1">❤️</div>
+            <div class="heart h2">💖</div>
+            <div class="heart h3">💕</div>
+            <div class="heart h4">💓</div>
+            <div class="heart h5">💗</div>
+            <div class="heart h6">❤️</div>
+        </div>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const page1 = document.getElementById('page-1');
+            const page2 = document.getElementById('page-2');
+            const clickButton = document.getElementById('click-here-button');
+            const audio = document.getElementById('background-music');
+
+            clickButton.addEventListener('click', () => {
+                audio.play();
+                page1.classList.add('fade-out');
+                setTimeout(() => {
+                    page1.style.display = 'none';
+                    page2.style.display = 'flex';
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
